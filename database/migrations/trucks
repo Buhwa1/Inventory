@@ -1,0 +1,9 @@
+ $table->bigIncrements('id');
+            $table->unsignedBigInteger('type_id');
+            $table->foreignId('type_id')->constrained('truck_types')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('plate_number');
+            $table->integer('trips');
+            $table->integer('total_cargo');
+            $table->string('status')->default('Available');
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));

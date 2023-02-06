@@ -1,0 +1,13 @@
+$table->bigIncrements('id');
+            $table->string('productName');
+            $table->string('packaging');
+            $table->string('email');
+            $table->bigInteger('phone');
+            $table->string('weight');
+            $table->string('loadingPoint');
+            $table->date('date');
+            $table->string('dropoff');
+            $table->string('extra');
+            $table->string('status')->default('Pending');
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));

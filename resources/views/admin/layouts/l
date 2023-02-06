@@ -1,0 +1,42 @@
+ <li class="nav-item dropdown">
+          @foreach($orders as $item)
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-bell"></i>
+            <span class="badge bg-primary badge-number">{{$item->count()}}</span>
+          </a><!-- End Notification Icon -->
+
+          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+            <li class="dropdown-header">
+              You have {{$item->count()}} new order(s)
+              <!-- <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a> -->
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+          @endforeach
+
+          @foreach($orders as $item)
+            <li class="notification-item">
+            <?php ?>
+            <a href="{{ url('/admin/orders/'.$item->id)}}">
+              <i style="font-size:25px;" class="bi bi-x-circle text-danger"></i>
+              <div>
+                <h4>Order from {{ $item->email }}</Order></h4>
+                <p style="color:black"><b>Pick up date :</b> {{ $item->date }}</p>
+                <p style="color:black"><b>Packaging :</b>  {{ $item->packaging}}</p>
+                <p style="color:black"><b>Weight :</b> {{ $item->weight }}</p>
+              </div>
+              </a>
+            </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            @endforeach
+
+            
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li class="dropdown-footer">
+              <a href="#">Show all notifications</a>
+            </li>
