@@ -1,6 +1,14 @@
 @extends('admin.layouts.layout')
 @section('content')
-
+<div class="pagetitle">
+      <h1>Truck Orders</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{url('/admin/home')}}">Home</a></li>
+          <li class="breadcrumb-item active">Truck orders</li>
+        </ol>
+      </nav>
+    </div>
      <!-- Card with header and footer -->
      <div class="card">
             <div class="card-header">
@@ -10,11 +18,13 @@
             </div>
             <div class="card-body">
               <h5 class="card-title">
-              Order Status 
-              @if( $data['status'] ==='Pending')
-                    {{ $data['status'] }} <i class="bi bi-x-circle text-danger"></i>
-              @elseif( $data['status'] ==='Completed')
-                    {{ $data['status']}} <i class="bi bi-check-circle text-success"></i>
+              Order Status -  
+              @if( $data['orderStatus'] ==='Pending')
+                    {{ $data['orderStatus'] }} <i class="bi bi-x-circle text-danger"></i>
+              @elseif( $data['orderStatus'] ==='Completed')
+                    {{ $data['orderStatus']}} <i class="bi bi-check-circle text-success"></i>
+              @elseif( $data['orderStatus'] ==='Truck Assigned')
+                    {{ $data['orderStatus']}} <i class="bi bi-check-circle text-warning"></i>
               @endif
 
 
@@ -48,27 +58,32 @@
                   </div>
               @endif
 
-              <form method="post" action="/add">
+              <form method="post" action="/assign-truck">
               @csrf
                   <div class="col-md-6">
-                  <select id="inputState" name="truck_id" class="form-select" required>
-                    <option selected>Assign Truck...</option>
-                    @foreach($trucks as $truck)
-                        @if($truck->status==='Available')
-                          <option value="{{$truck->id}}">
-                          {{ $truck->plate_number }}
-                          </option>
-                        @endif
-                    @endforeach
-                  </select>
-                  <span style="color:red">@error('truck_id'){{$message}} @enderror</span>
+                    @if($data['orderStatus'] ==='Pending')
+                      <select id="inputState" name="truck_id" class="form-select" required>
+                            <option selected>Assign Truck...</option>
+                            @foreach($trucks as $truck)
+                                @if($truck->truckStatus==='Available')
+                                  <option value="{{$truck->id}}">
+                                  {{ $truck->plate_number }}
+                                  </option>
+                                @endif
+                            @endforeach
+                          </select>
+                          <span style="color:red">@error('truck_id'){{$message}} @enderror</span>
+                          <div class="col-md-6 mt-2">
+                              <button type="submit" class="btn btn-primary" style="float:right">Submit</button>
+                          </div>
+                    @elseif($data['orderStatus'] ==='Truck Assigned' && $data['orderStatus'] ==='Completed')
+                          
+                    @endif
+                  
                   <input type="hidden" name="order_id" value="{{$data['id']}}">
                   <input type="hidden" name="status" value="Assigned">
                 </div>
-                <div class="col-md-6 mt-2">
-                <button type="submit" class="btn btn-primary" style="float:right">Submit</button>
-
-                    </div>
+                
                 </form>
               </div>
               </div>

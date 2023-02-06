@@ -11,6 +11,6 @@ class AdminLayoutController extends Controller
     //
     public function index(){
         $orders = Order::all();
-        return view('admin.layouts.layout');
+        return view('admin.layouts.layout',compact('orders'));
     }
 }

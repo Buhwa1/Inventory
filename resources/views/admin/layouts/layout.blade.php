@@ -79,11 +79,13 @@
           </a><!-- End Notification Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+          @foreach($orders as $item)
 
             <li class="dropdown-header">
-              You have <?php echo $count ?> new order(s)
+              You have {{ $item->count() }} new order(s)
               <!-- <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a> -->
             </li>
+            @endforeach
      
 
             <li>

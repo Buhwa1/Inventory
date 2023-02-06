@@ -17,7 +17,7 @@ class CreateTrips extends Migration
             $table->bigIncrements('id');
             $table->foreignId('truck_id')->constrained('trucks')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('order_id')->constrained('orders')->onUpdate('cascade')->onDelete('cascade');
-            $table->string('status');
+            $table->string('tripStatus');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });

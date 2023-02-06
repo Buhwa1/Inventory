@@ -24,7 +24,7 @@ class CreateOrders extends Migration
             $table->date('date');
             $table->string('dropoff');
             $table->string('extra');
-            $table->string('status')->default('Pending');
+            $table->string('orderStatus')->default('Pending');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });

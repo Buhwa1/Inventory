@@ -37,7 +37,7 @@ Route::get('/admin/clients/{id}',[App\Http\Controllers\ClientController::class,'
 
 Route::get('/admin/orders',[App\Http\Controllers\OrderController::class,'index'])->name('admin.orders.index');
 Route::get('/admin/orders/{id}',[App\Http\Controllers\OrderController::class,'show'])->name('admin.orders.show');
-Route::post('/add',[App\Http\Controllers\TripController::class,'add'])->name('admin.orders.add');
+Route::post('/assign-truck',[App\Http\Controllers\TripController::class,'add']);
 
 
 
@@ -47,7 +47,7 @@ Route::get('/clients',[App\Http\Controllers\ClientsController::class,'index'])->
 Route::get('/truck-order/create',[App\Http\Controllers\ClientsController::class,'create'])->name('client.order.create');
 Route::get('/trip',[App\Http\Controllers\TripController::class,'index'])->name('client.trips.show');
 Route::get('/trip/{id}',[App\Http\Controllers\TripController::class,'show'])->name('client.trips.show');
-// Route::post('/add',[App\Http\Controllers\ClientsController::class,'add'])->name('client.order.add');
+Route::post('/add',[App\Http\Controllers\ClientsController::class,'add']);
 
 
 
